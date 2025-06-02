@@ -1,4 +1,4 @@
 # personal-website-project
 
 # AI usage
-TBA
+Used AI to generate the background water effect, and edges on the border.

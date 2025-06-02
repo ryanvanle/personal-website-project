@@ -5,9 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="index.js"></script>
 </head>
 <body>
-  Hello, World! Work in progress (5/20/2025)
-</body>
+  <svg class="svg-defs">
+  <defs>
+    <filter id="staticPaperDistortion" x="-15%" y="-15%" width="130%" height="130%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04 0.08" numOctaves="3" seed="10" result="turbulence"/>
+        <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  </svg>
+
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div id="nestedParentContainer" class="jaggy-container-wrapper main-container">
+      <div class="distorted-paper-layer"></div>
+      <div class="content-layer">
+
+        <section>
+          <h1>Hi! Welcome to My Website!</h1>
+          <h2 id="motto">Grounded in Reality, Inspired by our Human Experience</h2>
+          <section id="introduction-container">
+            <section id="profile-picture-container">
+              <img id="profile-picture" src="img/1704944812238.jpeg" alt="ryan">
+            </section>
+            <section id="about-me-container">
+              <h2>About me</h2>
+              <p>
+                Hello, I'm Ryan Le (He/Him)! I am a Computer Engineering Student who is about to graduate from University of Washington.
+                I specialize and primary focus on technology that enhances the Human Experience, which includes fields such as Full-Stack Development, Accessibility, UI/UX Design, Prototyping, and Virtual Reality.
+                I previously interned at Amazon, as a Software Development Engineer, working on the Gift Card Experience Team.
+              </p>
+              <p>
+                Outside of schooling and work, I enjoy watching TV shows, playing video games, and learning random non-important but fulfilling skills such as shuffling cards.
+              </p>
+
+              <p>
+                Currently, I am actively working on prototyping a video game idea and assembling a game studio.
+              </p>
+            </section>
+          </section>
+
+        <section>
+          <h2>Update-to-date CV</h2>
+        </section>
+
+        <section>
+          <h2>Courses Taken</h2>
+        </section>
+
+        <section>
+          <h2></h2>
+        </section>
+
+
+
+        </section>
+
+
+
+
+      </div>
+  </div>
+
+  <script src="index.js"></script>
+
 </html>
