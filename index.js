@@ -237,6 +237,7 @@ window.addEventListener('resize', resizeCanvas);
 // --- Course List Population and Search ---
 // Make sure 'coursesData' is loaded and available globally from your other JS file.
 
+
 /**
  * Populates the course list in the DOM, optionally filtering by a search term.
  * @param {string} [searchTerm=''] - The term to filter courses by. Case-insensitive.
@@ -262,7 +263,7 @@ function populateCourseList(searchTerm = '') {
         } else {
             filteredCourses.forEach(course => {
                 const listItem = document.createElement('li');
-                listItem.textContent = `${course.courseSubject} ${course.courseNumber} - ${course.courseTitle} - Takeaway: ${course.takeaway || ''}`;
+                listItem.textContent = `[${course.institution}] ${course.courseSubject} ${course.courseNumber} - ${course.courseTitle}`;
                 courseListElement.appendChild(listItem);
             });
         }
