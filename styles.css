@@ -1,5 +1,5 @@
 html {
-  height: 100%; /* Added to support percentage height on body */
+  height: 200%; /* Added to support percentage height on body */
 }
 
 body {
@@ -27,6 +27,7 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
+  height: auto;
   min-height: 100vh;
   padding: 1rem;
   box-sizing: border-box;
@@ -124,4 +125,8 @@ h1 {
   width: 250px;
   height: 250px;
   object-fit: cover;
+}
+
+#main-container {
+  height: ;
 }
