@@ -278,89 +278,126 @@ function populateCourseList(searchTerm = '') {
     }
 }
 
-/**
- * Creates an anchor element.
- * @param {string} href - The URL for the link.
- * @param {string} text - The display text for the link.
- * @returns {HTMLAnchorElement} The created anchor element.
- */
-function createLink(href, text) {
-    const link = document.createElement('a');
-    link.href = href;
-    link.textContent = text;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    return link;
-}
 
-/**
- * Populates a container with project articles from a JSON object.
- * @param {Array<Object>} projects An array of project objects.
- */
-function populateProjects(projects) {
-    const container = document.getElementById('projects-container');
+        const projectsContainer = document.getElementById('projects-container');
+        let articleContainer; // Will hold the articles specifically
 
-    console.log("popluateProjects");
-
-    // Clear any existing content safely
-    container.replaceChildren();
-
-    // Create and add the main header
-    const mainHeader = document.createElement('h2');
-    mainHeader.textContent = 'Completed Projects';
-    container.appendChild(mainHeader);
-
-    // Loop through each project in the data array
-    projects.forEach(project => {
-    const article = document.createElement('article');
-
-    // Create the project title link (<h3><a></a></h3>)
-    const h3 = document.createElement('h3');
-    h3.appendChild(createLink(project.url, project.title));
-
-    // Create the date paragraph (<p>)
-    const p = document.createElement('p');
-    p.className = 'project-date';
-    p.textContent = project.date;
-
-    // Create the description list (<ul>)
-    const ul = document.createElement('ul');
-    project.description.forEach(descItem => {
-        const li = document.createElement('li');
-        li.textContent = descItem;
-        ul.appendChild(li);
-    });
-
-    // Handle the structured 'links' object if it exists
-    if (project.links) {
-        const linksLi = document.createElement('li');
-        if (project.links.github) { // Handle "Verbs" project
-        linksLi.appendChild(document.createTextNode("The project's source code and a video demonstration are available on "));
-        linksLi.appendChild(createLink(project.links.github, 'GitHub'));
-        linksLi.appendChild(document.createTextNode('.'));
-        } else if (project.links.controller) { // Handle "SprayCon" project
-        linksLi.appendChild(document.createTextNode("The project's source code for the "));
-        linksLi.appendChild(createLink(project.links.controller, 'controller'));
-        linksLi.appendChild(document.createTextNode(" and "));
-        linksLi.appendChild(createLink(project.links.website, 'website'));
-        linksLi.appendChild(document.createTextNode(", along with a "));
-        linksLi.appendChild(createLink(project.links.video, 'video demo'));
-        linksLi.appendChild(document.createTextNode(", are available."));
+        /**
+         * Creates an anchor element.
+         */
+        function createLink(href, text) {
+            const link = document.createElement('a');
+            link.href = href;
+            link.textContent = text;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            return link;
         }
-        ul.appendChild(linksLi);
-}
 
+        /**
+         * Renders project articles into the article container.
+         */
+        function renderProjects(projects) {
+            if (!articleContainer) return;
+            articleContainer.replaceChildren(); // Clear only the articles
 
-    // Append all created elements to the article
-    article.appendChild(h3);
-    article.appendChild(p);
-    article.appendChild(ul);
+            if (projects.length === 0) {
+                const noResults = document.createElement('p');
+                noResults.textContent = 'No projects match the selected filters.';
+                articleContainer.appendChild(noResults);
+                return;
+            }
 
-    // Append the completed article to the main container
-    container.appendChild(article);
-    });
-}
+            projects.forEach(project => {
+                const article = document.createElement('article');
+                const h3 = document.createElement('h3');
+                h3.appendChild(createLink(project.url, project.title));
 
+                const tagsContainer = document.createElement('div');
+                tagsContainer.className = 'tags-container';
+                project.tags.forEach(tagText => {
+                    const tag = document.createElement('span');
+                    tag.className = 'tag';
+                    tag.textContent = tagText;
+                    tagsContainer.appendChild(tag);
+                });
+
+                const p = document.createElement('p');
+                p.className = 'project-date';
+                p.textContent = project.date;
+
+                const ul = document.createElement('ul');
+                project.description.forEach(descItem => {
+                    const li = document.createElement('li');
+                    li.textContent = descItem;
+                    ul.appendChild(li);
+                });
+
+                if (project.links) {
+                    const linksLi = document.createElement('li');
+                    if (project.links.github) {
+                        linksLi.append("The project's source code and a video demonstration are available on ", createLink(project.links.github, 'GitHub'), ".");
+                    } else if (project.links.controller) {
+                        linksLi.append("The project's source code for the ", createLink(project.links.controller, 'controller'), " and ", createLink(project.links.website, 'website'), ", along with a ", createLink(project.links.video, 'video demo'), ", are available.");
+                    }
+                    ul.appendChild(linksLi);
+                }
+
+                // New order: title, tags, date, description
+                article.append(h3, tagsContainer, p, ul);
+                articleContainer.appendChild(article);
+            });
+        }
+
+        /**
+         * Creates filter controls and handles filtering logic.
+         */
+        function initializeFilters() {
+            projectsContainer.replaceChildren(); // Clear everything initially
+
+            const allTags = [...new Set(projectsData.flatMap(p => p.tags))].sort();
+
+            const mainHeader = document.createElement('h2');
+            mainHeader.textContent = 'Completed Projects';
+
+            const filterControls = document.createElement('div');
+            filterControls.id = 'filter-controls';
+
+            allTags.forEach(tag => {
+                const label = document.createElement('label');
+                label.className = 'filter-label';
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.name = 'tag';
+                checkbox.value = tag;
+
+                const span = document.createElement('span');
+                span.textContent = tag;
+
+                label.append(checkbox, span);
+                filterControls.appendChild(label);
+            });
+
+            // Create a dedicated container for the articles to be rendered into
+            articleContainer = document.createElement('div');
+
+            // Append new structure to the main container
+            projectsContainer.append(mainHeader, filterControls, articleContainer);
+
+            filterControls.addEventListener('change', () => {
+                const selectedTags = Array.from(filterControls.querySelectorAll('input:checked')).map(cb => cb.value);
+
+                if (selectedTags.length === 0) {
+                    renderProjects(projectsData);
+                } else {
+                    const filteredProjects = projectsData.filter(project =>
+                        selectedTags.some(tag => project.tags.includes(tag))
+                    );
+                    renderProjects(filteredProjects);
+                }
+            });
+        }
 
 
 // --- Initialize Search and Course List ---
@@ -368,10 +405,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Animation start is handled by texture.onload
 
     const searchInput = document.getElementById('site-search');
+    const allTags = [...new Set(projectsData.flatMap(p => p.tags))];
 
     // Initial population of the course list
+
+    initializeFilters();
+
     populateCourseList();
-    populateProjects(projectsData);
+    renderProjects(projectsData); // Initial population of all projects
 
 
     // Add event listener for the search input
