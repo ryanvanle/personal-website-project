@@ -349,14 +349,10 @@ function populateCourseList(searchTerm = '') {
             });
         }
 
-        /**
-         * Creates filter controls and handles filtering logic.
-         */
         function initializeFilters() {
-            projectsContainer.replaceChildren(); // Clear everything initially
+            projectsContainer.replaceChildren();
 
             const allTags = [...new Set(projectsData.flatMap(p => p.tags))].sort();
-
             const mainHeader = document.createElement('h2');
             mainHeader.textContent = 'Completed Projects';
 
@@ -379,10 +375,7 @@ function populateCourseList(searchTerm = '') {
                 filterControls.appendChild(label);
             });
 
-            // Create a dedicated container for the articles to be rendered into
             articleContainer = document.createElement('div');
-
-            // Append new structure to the main container
             projectsContainer.append(mainHeader, filterControls, articleContainer);
 
             filterControls.addEventListener('change', () => {
@@ -391,8 +384,10 @@ function populateCourseList(searchTerm = '') {
                 if (selectedTags.length === 0) {
                     renderProjects(projectsData);
                 } else {
+                    // --- LOGIC CHANGE IS HERE ---
+                    // A project is included if its tags array contains EVERY selected tag.
                     const filteredProjects = projectsData.filter(project =>
-                        selectedTags.some(tag => project.tags.includes(tag))
+                        selectedTags.every(tag => project.tags.includes(tag))
                     );
                     renderProjects(filteredProjects);
                 }

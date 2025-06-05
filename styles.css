@@ -88,8 +88,8 @@ body {
 .main-container {
   width: 80%;
   height: 100%;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 #introduction-container {
@@ -110,23 +110,27 @@ h1 {
 }
 
 #profile-picture-container {
-  width: 30%;
-  height: 30%;
-  background-color: red;
+  width: 15%;
+  /* REMOVED: height: 30%; -> Let height be determined by content */
+  /* REMOVED: background-color: red; */
+
+  /* ADDED: Flex properties to center the image inside */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #about-me-container {
-  width: 60%;
-  background-color: blue;
+  width: 70%;
   height: 100%;
 }
 
 #profile-picture {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-}
+  /* CHANGED: Replaced fixed px with responsive values */
+  width: 100%;
+  max-width: 250px; /* Optional: Sets a maximum size so it doesn't get huge on large screens */
+  height: auto; /* Maintains the image's aspect ratio */
 
-#main-container {
-  height: ;
+  /* This existing property is great for responsiveness! */
+  object-fit: cover;
 }
