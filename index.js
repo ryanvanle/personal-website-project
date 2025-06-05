@@ -413,7 +413,7 @@ function populateCourseList(searchTerm = '') {
 
 
 
-        /**
+/**
          * Populates a container with categorized skills.
          * @param {Array<Object>} skills An array of skill objects.
          */
@@ -425,7 +425,6 @@ function populateCourseList(searchTerm = '') {
             }
             container.replaceChildren(); // Clear any existing content safely
 
-            // 1. Group skills by category
             const groupedSkills = skills.reduce((acc, current) => {
                 const { category, skill } = current;
                 if (!acc[category]) {
@@ -435,54 +434,55 @@ function populateCourseList(searchTerm = '') {
                 return acc;
             }, {});
 
-            // 2. Create and append the main header
             const mainHeader = document.createElement('h2');
             mainHeader.textContent = 'Skills and Tools';
             container.appendChild(mainHeader);
 
-            // 3. Define the order of categories
             const categoryOrder = ["Languages", "Frameworks & Libraries", "Developer Tools & Platforms"];
 
-            // 4. Loop through categories in the specified order to build the HTML
             categoryOrder.forEach(category => {
                 if (groupedSkills[category]) {
                     const skillsInCategory = groupedSkills[category];
 
-                    // Create the category header (e.g., <h3>Languages</h3>)
                     const categoryHeader = document.createElement('h3');
                     categoryHeader.textContent = category;
 
-                    // Create the container for the skill items in this category
                     const skillListContainer = document.createElement('div');
                     skillListContainer.className = 'skill-list-container';
 
-                    // Loop through each skill in the current category
                     skillsInCategory.forEach(skillName => {
-                        // Create the wrapper div
+                        // --- LOGIC CHANGE IS HERE ---
+
+                        // 1. Create the wrapper div
                         const wrapper = document.createElement('div');
                         wrapper.className = 'jaggy-container-wrapper skill-item-jaggy';
 
-                        // Create the paper layer div
+                        // 2. Create the paper layer div
                         const paperLayer = document.createElement('div');
                         paperLayer.className = 'distorted-paper-layer';
 
-                        // Create the paragraph for the skill name
+                        // 3. Create the NEW content layer div
+                        const contentLayer = document.createElement('div');
+                        contentLayer.className = 'content-layer';
+
+                        // 4. Create the paragraph for the skill name
                         const p = document.createElement('p');
                         p.textContent = skillName;
 
-                        // Append the paper layer and the paragraph to the wrapper
-                        wrapper.append(paperLayer, p);
+                        // 5. Nest the paragraph INSIDE the content layer
+                        contentLayer.appendChild(p);
 
-                        // Append the completed skill item to its list container
+                        // 6. Append the paper layer AND the content layer to the wrapper
+                        wrapper.append(paperLayer, contentLayer);
+
+                        // 7. Append the completed skill item to its list container
                         skillListContainer.appendChild(wrapper);
                     });
 
-                    // Append the category header and the list container to the main container
                     container.append(categoryHeader, skillListContainer);
                 }
             });
         }
-
 
 // --- Initialize Search and Course List ---
 document.addEventListener('DOMContentLoaded', () => {

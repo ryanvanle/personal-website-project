@@ -18,241 +18,131 @@
 
   <canvas id="backgroundCanvas"></canvas>
 
-  <div id="nestedParentContainer" class="jaggy-container-wrapper main-container">
-      <div class="distorted-paper-layer"></div>
-      <div class="content-layer">
+  <div class="content-overlay">
+      <div id="nestedParentContainer" class="jaggy-container-wrapper main-container">
+          <div class="distorted-paper-layer"></div>
+          <div class="content-layer">
+            <section class="portfolio-content-section">
+              <h1>Hi! Welcome to My Website!</h1>
+              <h2 id="motto">Grounded in Reality, Inspired by our Human Experience</h2>
 
-        <section id="main-container">
-          <h1>Hi! Welcome to My Website!</h1>
-          <h2 id="motto">Grounded in Reality, Inspired by our Human Experience</h2>
-          <section id="introduction-container">
-            <section id="profile-picture-container">
-              <img id="profile-picture" src="img/1704944812238.jpeg" alt="ryan">
+              <section id="introduction-container">
+                <section id="profile-picture-container">
+                  <img id="profile-picture" src="img/1704944812238.jpeg" alt="Ryan Le profile picture" onerror="this.onerror=null; this.src='https://placehold.co/250x250/cccccc/4A5568?text=Image';">
+                </section>
+                <section id="about-me-container">
+                  <h2>About Me</h2>
+                  <p>
+                    Hello, I'm Ryan Le (He/Him)! I am a Computer Engineering Student who has recently graduated from the University of Washington.
+                    I specialize and primarily focus on technology that enhances the Human Experience, which includes fields such as Full-Stack Development, Accessibility, UI/UX Design, Prototyping, and Virtual Reality.
+                    I previously interned at Amazon as a Software Development Engineer, working on the Gift Card Experience Team.
+                  </p>
+                  <p>
+                    Outside of schooling and work, I enjoy watching TV shows, playing video games, and learning random non-important but fulfilling skills such as shuffling cards.
+                  </p>
+                  <p>
+                    Currently, I am actively prototyping a high-potential video game idea and assembling a game studio to hopefully create the game end-to-end. I am also taking a break to celebrate graduating and establish a foundation for the future.
+                  </p>
+                </section>
+              </section>
+
+            <section>
+              <h2>Updated CV (June, 2025)</h2>
+              <div class="cv-embed-container">
+                <embed src="files/Ryan_Le_Resume_06_03_2025.pdf" type="application/pdf" />
+                <!-- <div class="cv-placeholder">My CV PDF will be viewable here. For now, this is a placeholder.</div> -->
+              </div>
             </section>
-            <section id="about-me-container">
-              <h2>About Me</h2>
-              <p>
-                Hello, I'm Ryan Le (He/Him)! I am a Computer Engineering Student who is about to graduate from University of Washington.
-                I specialize and primary focus on technology that enhances the Human Experience, which includes fields such as Full-Stack Development, Accessibility, UI/UX Design, Prototyping, and Virtual Reality.
-                I previously interned at Amazon, as a Software Development Engineer, working on the Gift Card Experience Team.
-              </p>
-              <p>
-                Outside of schooling and work, I enjoy watching TV shows, playing video games, and learning random non-important but fulfilling skills such as shuffling cards.
-              </p>
 
-              <p>
-                Currently, I am actively prototyping a high-potential video game idea and assembling a game studio to hopefully create the game end-to-end. I am taking a break as well to celebrate graduating and establish a foundation for the future.
-              </p>
+            <section id="projects-container">
+              <h2>Completed Projects</h2>
+              <p class="italic text-gray-600 mb-6">Detailed project descriptions and links will be populated here by JavaScript.</p>
+              {/* Example Project - more will be injected by projects.js if available */}
+              <div class="jaggy-container-wrapper project-article-jaggy">
+                  <div class="distorted-paper-layer"></div>
+                  <div class="content-layer">
+                      <article>
+                          <h3><a href="#" target="_blank" rel="noopener noreferrer">Bear Bakerie</a></h3>
+                          <div class="tags-container">
+                              <span class="tag">Full-Stack</span><span class="tag">E-commerce</span><span class="tag">Web App</span>
+                          </div>
+                          <p class="project-date">Nov. 2021 – Dec. 2021</p>
+                          <ul>
+                              <li>Developed a full-stack proof of concept e-commerce website that sells bakery items alongside 1 other developer.</li>
+                              <li>Designed and implemented the website’s UI and overall functionality through JavaScript, HTML, and CSS.</li>
+                              <li>Built an Express REST API using Node.js with a PostgreSQL database to retrieve information such as the store’s items, search results, account details, or purchase history.</li>
+                          </ul>
+                      </article>
+                  </div>
+              </div>
             </section>
-          </section>
 
-        <section>
-          <h2>Updated CV (June, 2025)</h2>
-          <embed src="files/Ryan_Le_Resume_06_03_2025.pdf" type="application/pdf" width="95%" height="500px" />
-        </section>
+            <section class="skills-section-container">
+              <h2>Skills and Tools</h2>
+              <h3>Languages</h3>
+              <div class="skill-list-container">
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Java</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>JavaScript</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>TypeScript</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Python</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>HTML</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>CSS</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>SQL</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Lua</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Arduino</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Swift</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>C</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>C++</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Bash</p></div></div>
+              </div>
 
+              <h3>Frameworks &amp; Libraries</h3>
+              <div class="skill-list-container">
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>React.js</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Spring</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Node.js</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Express.js</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>JQuery</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Django</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>JUnit</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Godot</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>TensorFlow</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Firebase</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>JSP</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>D3.js</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>ML5.js</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>p5.js</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Three.js</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Tailwind CSS</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Bootstrap CSS</p></div></div>
+              </div>
 
+              <h3>Developer Tools &amp; Platforms</h3>
+              <div class="skill-list-container">
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Git</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Figma</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Azure</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>AWS</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Linux/Unix</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Heroku</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>Adobe Creative Suite</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>SOLIDWORKS</p></div></div>
+                  <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><div class="content-layer"><p>AutoCAD</p></div></div>
+              </div>
+            </section>
 
-        <section id="projects-container">
-          <h2>Completed Projects</h2>
-
-          <!-- <article>
-            <h3><a href="#" target="_blank" rel="noopener noreferrer">Tactus</a></h3>
-            <p class="project-date">Jan. 2025 – Mar. 2025</p>
-            <ul>
-              <li>Co-developed a discovery-based image-search web application (JavaScript, HTML, CSS, Firebase) in a 4-person team, enhancing art experiences for Blind/Visually Impaired (BLV) tactile artists in a digital space.</li>
-              <li>Designed and implemented a community-driven platform enabling users to explore artworks, art components, and art interpretations, addressing the lack of direct visual-to-tactile translation methods and promoting collaborative artistic dialogue through ”Community Suggestions” feature.</li>
-              <li>Engineered key features including enriched alt-text for all non-text content, screen reader compatibility, and interactive image segmentation for compositional tagging, through interviews from BLV artists and accessibility mentors.</li>
-            </ul>
-          </article>
-
-          <article>
-            <h3><a href="#" target="_blank" rel="noopener noreferrer">Space Invaders (but not that one)</a></h3>
-            <p class="project-date">Apr. 2024 – June. 2024</p>
-            <ul>
-              <li>Developed a video game to bring awareness to Washington’s invasive species issue alongside 3 developers.</li>
-              <li>Prototyped a physical wireless net controller to catch invasive species through a ESP32 micro-controller in C++, 3D-printing, and a Node.js server connected to WebSocket to capture input for a web application.</li>
-              <li>Utilized ml5.js Computer vision hand gesture model as an AI controller to take informational wildlife snapshots.</li>
-              <li>Won Best Game Controller and Best Game Overall awards within 8 other teams.</li>
-            </ul>
-          </article>
-
-          <article>
-            <h3><a href="#" target="_blank" rel="noopener noreferrer">SprayCon</a></h3>
-            <p class="project-date">Approx. Spring 2024</p>
-            <ul>
-              <li>Conceived and developed "SprayCon," an interactive digital graffiti project featuring a custom-built, motion-controlled spray can interface.</li>
-              <li>Engineered a physical spray can controller using an accelerometer for cursor movement, an arcade button for input, and an RGB LED for visual feedback.</li>
-              <li>Developed a p5.js web application that interprets real-time motion data from the controller to draw on a digital canvas, establishing a reliable two-way serial communication link between the hardware and the website.</li>
-              <li>Implemented intuitive gesture-based controls, allowing the user to shake the controller to switch between drawing, color selection, and brush modification modes.</li>
-              <li>Created a seamless feedback loop where the website sends color data back to the controller's RGB LED, ensuring the physical device always matches the digital state.</li>
-              <li>Successfully troubleshooted complex hardware and software integration issues, demonstrating a strong capability in both embedded systems and web development.</li>
-            </ul>
-          </article>
-
-          <article>
-            <h3><a href="#" target="_blank" rel="noopener noreferrer">Verbs</a></h3>
-            <p class="project-date">Approx. Spring 2024</p>
-            <ul>
-              <li>Developed a WarioWare-inspired collection of rapid-fire minigames controlled by a custom-built hardware interface, drawing inspiration from Rhythm Heaven and popular memes like 'Bongo Cat'.</li>
-              <li>Engineered a unique physical controller using an Arduino, photoresistor, potentiometer, and buttons to create distinct gameplay actions for each minigame, such as matching patterns, covering a light sensor, and matching tones.</li>
-              <li>Implemented a physical health system using LEDs on the controller to provide immediate visual feedback to the player on their performance and remaining lives.</li>
-              <li>Managed the entire design process from initial circuit diagrams and physical prototyping to final implementation and iterative debugging of hardware and software.</li>
-              <li>Demonstrated resilience and advanced problem-solving by overcoming significant hardware integration challenges, including intermittent board failures and system crashes.</li>
-            </ul>
-          </article>
-
-          <article>
-            <h3><a href="#" target="_blank" rel="noopener noreferrer">Lite Lingo</a></h3>
-            <p class="project-date">Nov. 2023 – Dec. 2023</p>
-            <ul>
-              <li>Developed a full-stack Chrome extension with the goal of helping individuals with learning disabilities, by allowing users to select any website text, transforming it to a plain language translation, and editing it for anyone to see.</li>
-              <li>Built an Express RESTful API using Node.js with an AWS PostgreSQL database to store and retrieve websites’ plain language annotations, and to generate initial translations through OpenAI ChatGPT-3.5 API.</li>
-              <li>Earned the AA conformance in the W3 Web Content Accessibility Guidelines, through automated accessibility testing, and manual testing using accessibility tools such as screen readers and switch control.</li>
-              <li>Presented and discussed work at a University of Washington accessibility event with over 100 attendees.</li>
-            </ul>
-          </article>
-
-          <article>
-            <h3><a href="#" target="_blank" rel="noopener noreferrer">Geo Car</a></h3>
-            <p class="project-date">May 2023 – June 2023</p>
-            <ul>
-              <li>Developed a full-stack website to determine car makes in user-picked areas aimed to offer data-driven insights for car manufacturers through Computer Vision.</li>
-              <li>Leveraged Google Streetview API and Maps API to extract user-selected locations to be processed by YOLO Object Detection model via ML5.js to identify cars and send to a back-end server to determine the car make.</li>
-              <li>Successfully identified car makes worldwide, despite challenges such as outdated data, and model constraints.</li>
-            </ul>
-          </article>
-
-          <article>
-            <h3><a href="#" target="_blank" rel="noopener noreferrer">Writer’s Block</a></h3>
-            <p class="project-date">Oct. 2022</p>
-            <ul>
-              <li>Developed a React multiplayer front-end website in under 24 hours for the DubHacks 2022 Hackathon, where 4 players compete in a real-time online writing test to see who can write the fastest.</li>
-              <li>Adapted Google Input Tools handwriting model through an open-source library, handwriting.js, to allow users to digitally write out their answers than typing.</li>
-              <li>Utilized and learned a NoSQL database, Firebase, to store in real-time active game states and players’ writing progress, then displays that information for all players in real-time.</li>
-            </ul>
-          </article>
-
-          <article>
-            <h3><a href="#" target="_blank" rel="noopener noreferrer">Image To Plant</a></h3>
-            <p class="project-date">July 2022 – Aug. 2022</p>
-            <ul>
-              <li>Identified a plant identification issue with beginner plant hobbyists and developed a personal project front-end website using JavaScript, HTML, and CSS, that identifies a user’s plant image to the plant’s species.</li>
-              <li>Integrated Azure’s Bing Web Search API to create a dataset containing 30,859 images of 250 unique plants.</li>
-              <li>Remodeled and trained MobileNetV3 using Python and TensorFlow to identify plant species by transfer learning.</li>
-            </ul>
-          </article>
-
-          <article>
-            <h3><a href="#" target="_blank" rel="noopener noreferrer">Mind Games</a></h3>
-            <p class="project-date">June 2022 – July 2022</p>
-            <ul>
-              <li>Developed a personal project front-end website consisting of three puzzle games: Solving mathematical questions, counting text that matches the prompt description, and counting people entering or leaving a house.</li>
-              <li>Adapted Google Input Tools handwriting model through an open-source library, handwriting.js, to allow users to write out their answers than typing.</li>
-              <li>Utilized CSS Animations and sound design to create a more responsive website and experience for the user.</li>
-            </ul>
-          </article>
-
-          <article>
-            <h3><a href="#" target="_blank" rel="noopener noreferrer">Campus Paths</a></h3>
-            <p class="project-date">Jan. 2022 – Mar. 2022</p>
-            <ul>
-              <li>Developed a full-stack website that finds the shortest path between two user-picked University of Washington Seattle Campus Buildings as a class project for Software Design & Implementation.</li>
-              <li>Built and designed a custom graph data structure in Java and implemented Dijkstra’s Algorithm.</li>
-              <li>Created multiple JUnit test suites to ensure code implementations were correct and to reduce possible errors.</li>
-              <li>Deployed a Java Spark server back-end API to communicate and send path data to the React front-end website.</li>
-            </ul>
-          </article>
-
-          <article>
-            <h3><a href="#" target="_blank" rel="noopener noreferrer">Bear Bakerie</a></h3>
-            <p class="project-date">Nov. 2021 – Dec. 2021</p>
-            <ul>
-              <li>Developed a full-stack proof of concept e-commerce website that sells bakery items alongside 1 other developer.</li>
-              <li>Designed and implemented the website’s UI and overall functionality through JavaScript, HTML, and CSS.</li>
-              <li>Built an Express REST API using Node.js with a PostgreSQL database to retrieve information such as the store’s items, search results, account details, or purchase history.</li>
-            </ul>
-          </article>
- -->
-
-
-
-        </section>
-
-        <section class="skills-section-container">
-          <!-- <h2>Skills and Tools</h2>
-
-          <h3>Languages</h3>
-          <div class="skill-list-container">
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Java</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>JavaScript</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>TypeScript</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Python</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>HTML</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>CSS</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>SQL</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Lua</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Arduino</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Swift</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>C</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>C++</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Bash</p></div>
+            <section>
+              <h2>Courses Taken</h2>
+              <p>From the University of Washington or Tacoma Community College.</p>
+              <div id="course-search-container">
+                <label for="site-search">Search Courses:</label>
+                <input type="search" id="site-search" name="q" placeholder="E.g., CSE 154 or Web"/>
+              </div>
+              <ul id="course-list">
+              </ul>
+            </section>
+            </section>
           </div>
-
-          <h3>Frameworks &amp; Libraries</h3>
-          <div class="skill-list-container">
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>React.js</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Spring</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Node.js</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Express.js</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>JQuery</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Django</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>JUnit</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Godot</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>TensorFlow</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Firebase</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>JSP</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>D3.js</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>ML5.js</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>p5.js</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Three.js</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Tailwind CSS</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Bootstrap CSS</p></div>
-          </div>
-
-          <h3>Developer Tools &amp; Platforms</h3>
-          <div class="skill-list-container">
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Git</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Figma</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Azure</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>AWS</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Linux/Unix</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Heroku</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>Adobe Creative Suite</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>SOLIDWORKS</p></div>
-              <div class="jaggy-container-wrapper skill-item-jaggy"><div class="distorted-paper-layer"></div><p>AutoCAD</p></div>
-          </div> -->
-      </section>
-
-
-    <section>
-      <h2>Courses Taken</h2>
-      <p>From the University of Washington or Tacoma Community College</p>
-
-      <label for="site-search">Search Courses:</label>
-      <input type="search" id="site-search" name="q" />
-      <ul id="course-list">
-        <!-- generated in JS -->
-      </ul>
-
-    </section>
-
-
-
-
-
-
-
       </div>
   </div>
 

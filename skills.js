@@ -12,6 +12,7 @@ const skillsData = [
   { "skill": "C", "category": "Languages" },
   { "skill": "C++", "category": "Languages" },
   { "skill": "Bash", "category": "Languages" },
+  { "skill": "SystemVerilog", "category": "Languages" },
   { "skill": "React.js", "category": "Frameworks & Libraries" },
   { "skill": "Spring", "category": "Frameworks & Libraries" },
   { "skill": "Node.js", "category": "Frameworks & Libraries" },

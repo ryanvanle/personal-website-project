@@ -1,15 +1,17 @@
 html {
-  height: auto; /* Added to support percentage height on body */
+  height: auto;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background-color: red; /* Changed from #e0e0e0 as per your example */
-  height: 100%; /* Added */
-  width: 100%;  /* Added */
+  background-color: #111827;
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
+  color: #D1D5DB;
 }
 
 #backgroundCanvas {
@@ -27,22 +29,20 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
-  height: auto;
   min-height: 100vh;
-  padding: 1rem;
+  height: auto;
+  padding: 2rem 0; /* MODIFIED: Vertical padding only, horizontal removed */
   box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: center; /* Centers .main-container horizontally */
   overflow-y: auto;
 }
 
-/* Styles from the Jaggy Map Component */
 .jaggy-container-wrapper {
   position: relative;
   font-family: 'Inter', sans-serif;
-  margin: 1rem;
+  margin: 1rem; /* Default margin for jaggy containers */
 }
 
 .distorted-paper-layer {
@@ -59,15 +59,15 @@ body {
   z-index: 1;
 }
 
-/* The layer for content *inside* a jaggy container */
-.content-layer {
-    position: relative; /* <<< FIX: Changed from absolute to relative to be in document flow */
-    z-index: 2;         /* Keep it on top of the paper layer */
-    padding: 1.5rem 2rem; /* Give content padding away from the edges */
+#nestedParentContainer > .content-layer {
+    position: relative;
+    z-index: 2;
+    /* width: 100%; */
+    height: auto;
+    padding: 2rem 2.5rem;
     font-size: 1rem;
-    text-align: left;   /* Default for article content */
     color: #374151;
-    /* height, width, top, left, and flex properties are removed so it sizes naturally */
+    overflow: visible;
 }
 
 .svg-defs {
@@ -77,169 +77,281 @@ body {
   overflow: hidden;
 }
 
-.outer-container-example {
-  border: 1px dashed #999;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background-color: #f0f0f0;
+.main-container {
+  width: 85%;
+  height: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-.main-container {
-  width: 80%;
-  height: 100%;
-  margin-left: 1rem;
-  margin-right: 1rem;
+.portfolio-content-section {
+    width: 100%;
 }
 
 #introduction-container {
   width: 100%;
-  height: 100%;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  gap: 2.5rem;
 }
 
-h1 {
+.portfolio-content-section h1 {
   text-align: center;
   width: 100%;
+  font-size: 2.75rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #1F2937;
 }
 
-#motto {
+.portfolio-content-section #motto {
   text-align: center;
   width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  color: #4B5563;
+  font-style: italic;
 }
 
 #profile-picture-container {
-  width: 15%;
-  /* REMOVED: height: 30%; -> Let height be determined by content */
-  /* REMOVED: background-color: red; */
-
-  /* ADDED: Flex properties to center the image inside */
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 0.5rem;
 }
 
 #about-me-container {
-  width: 70%;
-  height: 100%;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+    #profile-picture-container {
+        width: 30%;
+        max-width: 280px;
+        justify-content: flex-start;
+    }
+    #about-me-container {
+        width: 65%;
+    }
 }
 
 #profile-picture {
-  /* CHANGED: Replaced fixed px with responsive values */
   width: 100%;
-  max-width: 250px; /* Optional: Sets a maximum size so it doesn't get huge on large screens */
-  height: auto; /* Maintains the image's aspect ratio */
-
-  /* This existing property is great for responsiveness! */
+  max-width: 250px;
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  border: 5px solid #faf0dc;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-
-/* Styling for the Skills Section */
-.skills-section-container {
-    width: 95%;
-    /* margin: 2rem auto; */
-    /* padding: 1.5rem; */
-    /* border: 1px dashed #9CA3AF; */
-    /* border-radius: 8px; */
-    /* background-color: rgba(255,255,255,0.1); */
+.portfolio-content-section > section > h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: #111827;
+    border-bottom: 3px solid #dcb873;
+    padding-bottom: 0.75rem;
+    text-align: left;
+}
+#about-me-container > h2 {
+    margin-top: 0;
 }
 
-.skill-list-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    justify-content: left;
-    padding-left: 0;
-    list-style-type: none;
+.portfolio-content-section section p,
+.portfolio-content-section section ul {
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
 }
-
-.skill-item-jaggy {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    height: 45px;
-    margin: 0.25rem;
-    padding: 0.25rem 1rem;
-    position: relative;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #1F2937;
-    cursor: default;
-    min-width: 80px;
+.portfolio-content-section section ul {
+    list-style-type: disc;
+    padding-left: 1.75rem;
 }
-
-.skill-item-jaggy .distorted-paper-layer {
-    border-width: 2px;
-    border-color: #d1d5db;
-    background-color: #f9fafb;
+.portfolio-content-section section ul li {
+    margin-bottom: 0.65rem;
 }
-
-.skill-item-jaggy p {
-    white-space: nowrap;
-    z-index: 2; /* Ensure text is above the paper layer */
-    position: relative; /* Needed if z-index is to work reliably against sibling absolute layer */
-    margin: 0; /* Remove default p margin */
-}
-
 
 /* Project Article Specific Styling */
 .project-article-jaggy {
-    width: 100%; /* Take full width of its parent (.content-section-wrapper) */
-    height: auto; /* Adjust height based on content */
-    margin-bottom: 1.5rem; /* Space between project articles */
+    width: 100%;
+    height: auto;
+    margin: 0 0 2rem 0;
 }
 .project-article-jaggy .distorted-paper-layer {
-    background-color: #fefff0; /* Slightly different paper color for projects */
-    border-color: #e5e7eb;
+    background-color: #fffdf5;
+    border-color: #f3e9d2;
+    border-width: 3px;
 }
-.project-article-jaggy > .content-layer { /* Note direct child selector */
-    padding: 1.5rem; /* More padding for articles */
-    align-items: flex-start; /* Align article content to the top */
+.project-article-jaggy > .content-layer {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 2;
 }
-.project-article-jaggy article { /* The actual article tag inside content-layer */
+.project-article-jaggy article {
     width: 100%;
 }
 .project-article-jaggy article h3 {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 0.25rem;
-    color: #111827;
+    margin-bottom: 0.35rem;
+    color: #1F2937;
 }
 .project-article-jaggy article h3 a {
-    color: #1D4ED8;
+    color: #2563EB;
     text-decoration: none;
 }
 .project-article-jaggy article h3 a:hover {
     text-decoration: underline;
 }
 .project-article-jaggy article .tags-container {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
 }
 .project-article-jaggy article .tag {
-    background-color: #E0E7FF; /* Light blue tag background */
-    color: #3730A3; /* Dark blue tag text */
-    padding: 0.25rem 0.65rem;
-    border-radius: 9999px; /* Pill shape */
-    font-size: 0.75rem;
+    background-color: #DBEAFE;
+    color: #1E40AF;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
     font-weight: 500;
 }
 .project-article-jaggy article .project-date {
-    font-size: 0.8rem;
-    color: #6B7280;
-    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+    color: #4B5563;
+    margin-bottom: 1rem;
     font-style: italic;
 }
-.project-article-jaggy article ul {
-    list-style-type: disc;
-    padding-left: 1.25rem; /* Indent for project points */
-    margin-bottom: 0; /* Remove bottom margin if it's the last thing */
+
+/* Skills Section */
+.skills-section-container {
+    width: 100%;
 }
-.project-article-jaggy article ul li {
-    margin-bottom: 0.5rem;
-    line-height: 1.6;
+.skills-section-container h3 {
+    font-size: 1.35rem;
+    font-weight: 500;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+    padding-bottom: 0.5rem;
+}
+.skill-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: flex-start;
+    padding-left: 0;
+    list-style-type: none;
+}
+.skill-item-jaggy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 40px;
+    margin: 0.35rem;
+    padding: 0.25rem 1rem;
+    position: relative;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1F2937;
+    cursor: default;
+    min-width: 70px;
+}
+.skill-item-jaggy .distorted-paper-layer {
+    border-width: 2px;
+    border-color: #D1D5DB;
+    background-color: #F9FAFB;
+}
+.skill-item-jaggy .content-layer {
+    position: relative;
+    padding: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.skill-item-jaggy .content-layer p {
+    white-space: nowrap;
+    margin: 0;
+}
+
+.cv-embed-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.cv-embed-container embed, .cv-embed-container .cv-placeholder {
+    border: 1px solid #D1D5DB;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 700px;
+    height: 600px;
+}
+  .cv-embed-container .cv-placeholder {
+    padding: 2rem;
+    text-align: center;
+    background-color: #F9FAFB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    color: #6B7280;
+}
+
+#course-search-container {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+#course-search-container label {
+    font-weight: 500;
+    color: #374151;
+}
+#course-search-container input[type="search"] {
+    padding: 0.65rem 0.85rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+#course-search-container input[type="search"]:focus {
+    outline: none;
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+#course-list {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+#course-list li {
+  padding: 0.5rem 0.25rem;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+#course-list li:last-child {
+  border-bottom: none;
+}
+
+#filter-controls {
+  margin-bottom: 1rem;
 }
