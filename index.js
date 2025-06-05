@@ -295,11 +295,11 @@ function populateCourseList(searchTerm = '') {
         }
 
         /**
-         * Renders project articles into the article container.
+         * Renders project articles into the article container using the new format.
          */
         function renderProjects(projects) {
             if (!articleContainer) return;
-            articleContainer.replaceChildren(); // Clear only the articles
+            articleContainer.replaceChildren();
 
             if (projects.length === 0) {
                 const noResults = document.createElement('p');
@@ -309,6 +309,7 @@ function populateCourseList(searchTerm = '') {
             }
 
             projects.forEach(project => {
+                // 1. Create the inner article with all its content
                 const article = document.createElement('article');
                 const h3 = document.createElement('h3');
                 h3.appendChild(createLink(project.url, project.title));
@@ -343,11 +344,27 @@ function populateCourseList(searchTerm = '') {
                     ul.appendChild(linksLi);
                 }
 
-                // New order: title, tags, date, description
                 article.append(h3, tagsContainer, p, ul);
-                articleContainer.appendChild(article);
+
+                // 2. Create the new wrapper structure
+                const wrapper = document.createElement('div');
+                wrapper.className = 'jaggy-container-wrapper project-article-jaggy';
+
+                const paperLayer = document.createElement('div');
+                paperLayer.className = 'distorted-paper-layer';
+
+                const contentLayer = document.createElement('div');
+                contentLayer.className = 'content-layer';
+
+                // 3. Nest the article inside the new structure
+                contentLayer.appendChild(article);
+                wrapper.append(paperLayer, contentLayer);
+
+                // 4. Append the final wrapped structure to the container
+                articleContainer.appendChild(wrapper);
             });
         }
+
 
         function initializeFilters() {
             projectsContainer.replaceChildren();
@@ -395,6 +412,78 @@ function populateCourseList(searchTerm = '') {
         }
 
 
+
+        /**
+         * Populates a container with categorized skills.
+         * @param {Array<Object>} skills An array of skill objects.
+         */
+        function populateSkills(skills) {
+            const container = document.querySelector('.skills-section-container');
+            if (!container) {
+                console.error("Skills container not found!");
+                return;
+            }
+            container.replaceChildren(); // Clear any existing content safely
+
+            // 1. Group skills by category
+            const groupedSkills = skills.reduce((acc, current) => {
+                const { category, skill } = current;
+                if (!acc[category]) {
+                    acc[category] = [];
+                }
+                acc[category].push(skill);
+                return acc;
+            }, {});
+
+            // 2. Create and append the main header
+            const mainHeader = document.createElement('h2');
+            mainHeader.textContent = 'Skills and Tools';
+            container.appendChild(mainHeader);
+
+            // 3. Define the order of categories
+            const categoryOrder = ["Languages", "Frameworks & Libraries", "Developer Tools & Platforms"];
+
+            // 4. Loop through categories in the specified order to build the HTML
+            categoryOrder.forEach(category => {
+                if (groupedSkills[category]) {
+                    const skillsInCategory = groupedSkills[category];
+
+                    // Create the category header (e.g., <h3>Languages</h3>)
+                    const categoryHeader = document.createElement('h3');
+                    categoryHeader.textContent = category;
+
+                    // Create the container for the skill items in this category
+                    const skillListContainer = document.createElement('div');
+                    skillListContainer.className = 'skill-list-container';
+
+                    // Loop through each skill in the current category
+                    skillsInCategory.forEach(skillName => {
+                        // Create the wrapper div
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'jaggy-container-wrapper skill-item-jaggy';
+
+                        // Create the paper layer div
+                        const paperLayer = document.createElement('div');
+                        paperLayer.className = 'distorted-paper-layer';
+
+                        // Create the paragraph for the skill name
+                        const p = document.createElement('p');
+                        p.textContent = skillName;
+
+                        // Append the paper layer and the paragraph to the wrapper
+                        wrapper.append(paperLayer, p);
+
+                        // Append the completed skill item to its list container
+                        skillListContainer.appendChild(wrapper);
+                    });
+
+                    // Append the category header and the list container to the main container
+                    container.append(categoryHeader, skillListContainer);
+                }
+            });
+        }
+
+
 // --- Initialize Search and Course List ---
 document.addEventListener('DOMContentLoaded', () => {
     // Animation start is handled by texture.onload
@@ -407,6 +496,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeFilters();
 
     populateCourseList();
+    populateSkills(skillsData);
+
     renderProjects(projectsData); // Initial population of all projects
 
 

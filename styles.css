@@ -1,5 +1,5 @@
 html {
-  height: 300%; /* Added to support percentage height on body */
+  height: auto; /* Added to support percentage height on body */
 }
 
 body {
@@ -59,16 +59,15 @@ body {
   z-index: 1;
 }
 
+/* The layer for content *inside* a jaggy container */
 .content-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  padding: 1rem;
-  font-size: 1rem;
-  overflow: hidden;
+    position: relative; /* <<< FIX: Changed from absolute to relative to be in document flow */
+    z-index: 2;         /* Keep it on top of the paper layer */
+    padding: 1.5rem 2rem; /* Give content padding away from the edges */
+    font-size: 1rem;
+    text-align: left;   /* Default for article content */
+    color: #374151;
+    /* height, width, top, left, and flex properties are removed so it sizes naturally */
 }
 
 .svg-defs {
@@ -133,4 +132,114 @@ h1 {
 
   /* This existing property is great for responsiveness! */
   object-fit: cover;
+}
+
+
+/* Styling for the Skills Section */
+.skills-section-container {
+    width: 95%;
+    /* margin: 2rem auto; */
+    /* padding: 1.5rem; */
+    /* border: 1px dashed #9CA3AF; */
+    /* border-radius: 8px; */
+    /* background-color: rgba(255,255,255,0.1); */
+}
+
+.skill-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: left;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.skill-item-jaggy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 45px;
+    margin: 0.25rem;
+    padding: 0.25rem 1rem;
+    position: relative;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1F2937;
+    cursor: default;
+    min-width: 80px;
+}
+
+.skill-item-jaggy .distorted-paper-layer {
+    border-width: 2px;
+    border-color: #d1d5db;
+    background-color: #f9fafb;
+}
+
+.skill-item-jaggy p {
+    white-space: nowrap;
+    z-index: 2; /* Ensure text is above the paper layer */
+    position: relative; /* Needed if z-index is to work reliably against sibling absolute layer */
+    margin: 0; /* Remove default p margin */
+}
+
+
+/* Project Article Specific Styling */
+.project-article-jaggy {
+    width: 100%; /* Take full width of its parent (.content-section-wrapper) */
+    height: auto; /* Adjust height based on content */
+    margin-bottom: 1.5rem; /* Space between project articles */
+}
+.project-article-jaggy .distorted-paper-layer {
+    background-color: #fefff0; /* Slightly different paper color for projects */
+    border-color: #e5e7eb;
+}
+.project-article-jaggy > .content-layer { /* Note direct child selector */
+    padding: 1.5rem; /* More padding for articles */
+    align-items: flex-start; /* Align article content to the top */
+}
+.project-article-jaggy article { /* The actual article tag inside content-layer */
+    width: 100%;
+}
+.project-article-jaggy article h3 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #111827;
+}
+.project-article-jaggy article h3 a {
+    color: #1D4ED8;
+    text-decoration: none;
+}
+.project-article-jaggy article h3 a:hover {
+    text-decoration: underline;
+}
+.project-article-jaggy article .tags-container {
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.project-article-jaggy article .tag {
+    background-color: #E0E7FF; /* Light blue tag background */
+    color: #3730A3; /* Dark blue tag text */
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px; /* Pill shape */
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+.project-article-jaggy article .project-date {
+    font-size: 0.8rem;
+    color: #6B7280;
+    margin-bottom: 0.75rem;
+    font-style: italic;
+}
+.project-article-jaggy article ul {
+    list-style-type: disc;
+    padding-left: 1.25rem; /* Indent for project points */
+    margin-bottom: 0; /* Remove bottom margin if it's the last thing */
+}
+.project-article-jaggy article ul li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
 }
