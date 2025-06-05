@@ -51,34 +51,201 @@
           <embed src="files/Ryan_Le_Resume_06_03_2025.pdf" type="application/pdf" width="95%" height="500px" />
         </section>
 
-        <section>
+        <section id="projects-container">
           <h2>Completed Projects</h2>
+
+          <!-- <article>
+            <h3><a href="#" target="_blank" rel="noopener noreferrer">Tactus</a></h3>
+            <p class="project-date">Jan. 2025 – Mar. 2025</p>
+            <ul>
+              <li>Co-developed a discovery-based image-search web application (JavaScript, HTML, CSS, Firebase) in a 4-person team, enhancing art experiences for Blind/Visually Impaired (BLV) tactile artists in a digital space.</li>
+              <li>Designed and implemented a community-driven platform enabling users to explore artworks, art components, and art interpretations, addressing the lack of direct visual-to-tactile translation methods and promoting collaborative artistic dialogue through ”Community Suggestions” feature.</li>
+              <li>Engineered key features including enriched alt-text for all non-text content, screen reader compatibility, and interactive image segmentation for compositional tagging, through interviews from BLV artists and accessibility mentors.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3><a href="#" target="_blank" rel="noopener noreferrer">Space Invaders (but not that one)</a></h3>
+            <p class="project-date">Apr. 2024 – June. 2024</p>
+            <ul>
+              <li>Developed a video game to bring awareness to Washington’s invasive species issue alongside 3 developers.</li>
+              <li>Prototyped a physical wireless net controller to catch invasive species through a ESP32 micro-controller in C++, 3D-printing, and a Node.js server connected to WebSocket to capture input for a web application.</li>
+              <li>Utilized ml5.js Computer vision hand gesture model as an AI controller to take informational wildlife snapshots.</li>
+              <li>Won Best Game Controller and Best Game Overall awards within 8 other teams.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3><a href="#" target="_blank" rel="noopener noreferrer">SprayCon</a></h3>
+            <p class="project-date">Approx. Spring 2024</p>
+            <ul>
+              <li>Conceived and developed "SprayCon," an interactive digital graffiti project featuring a custom-built, motion-controlled spray can interface.</li>
+              <li>Engineered a physical spray can controller using an accelerometer for cursor movement, an arcade button for input, and an RGB LED for visual feedback.</li>
+              <li>Developed a p5.js web application that interprets real-time motion data from the controller to draw on a digital canvas, establishing a reliable two-way serial communication link between the hardware and the website.</li>
+              <li>Implemented intuitive gesture-based controls, allowing the user to shake the controller to switch between drawing, color selection, and brush modification modes.</li>
+              <li>Created a seamless feedback loop where the website sends color data back to the controller's RGB LED, ensuring the physical device always matches the digital state.</li>
+              <li>Successfully troubleshooted complex hardware and software integration issues, demonstrating a strong capability in both embedded systems and web development.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3><a href="#" target="_blank" rel="noopener noreferrer">Verbs</a></h3>
+            <p class="project-date">Approx. Spring 2024</p>
+            <ul>
+              <li>Developed a WarioWare-inspired collection of rapid-fire minigames controlled by a custom-built hardware interface, drawing inspiration from Rhythm Heaven and popular memes like 'Bongo Cat'.</li>
+              <li>Engineered a unique physical controller using an Arduino, photoresistor, potentiometer, and buttons to create distinct gameplay actions for each minigame, such as matching patterns, covering a light sensor, and matching tones.</li>
+              <li>Implemented a physical health system using LEDs on the controller to provide immediate visual feedback to the player on their performance and remaining lives.</li>
+              <li>Managed the entire design process from initial circuit diagrams and physical prototyping to final implementation and iterative debugging of hardware and software.</li>
+              <li>Demonstrated resilience and advanced problem-solving by overcoming significant hardware integration challenges, including intermittent board failures and system crashes.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3><a href="#" target="_blank" rel="noopener noreferrer">Lite Lingo</a></h3>
+            <p class="project-date">Nov. 2023 – Dec. 2023</p>
+            <ul>
+              <li>Developed a full-stack Chrome extension with the goal of helping individuals with learning disabilities, by allowing users to select any website text, transforming it to a plain language translation, and editing it for anyone to see.</li>
+              <li>Built an Express RESTful API using Node.js with an AWS PostgreSQL database to store and retrieve websites’ plain language annotations, and to generate initial translations through OpenAI ChatGPT-3.5 API.</li>
+              <li>Earned the AA conformance in the W3 Web Content Accessibility Guidelines, through automated accessibility testing, and manual testing using accessibility tools such as screen readers and switch control.</li>
+              <li>Presented and discussed work at a University of Washington accessibility event with over 100 attendees.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3><a href="#" target="_blank" rel="noopener noreferrer">Geo Car</a></h3>
+            <p class="project-date">May 2023 – June 2023</p>
+            <ul>
+              <li>Developed a full-stack website to determine car makes in user-picked areas aimed to offer data-driven insights for car manufacturers through Computer Vision.</li>
+              <li>Leveraged Google Streetview API and Maps API to extract user-selected locations to be processed by YOLO Object Detection model via ML5.js to identify cars and send to a back-end server to determine the car make.</li>
+              <li>Successfully identified car makes worldwide, despite challenges such as outdated data, and model constraints.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3><a href="#" target="_blank" rel="noopener noreferrer">Writer’s Block</a></h3>
+            <p class="project-date">Oct. 2022</p>
+            <ul>
+              <li>Developed a React multiplayer front-end website in under 24 hours for the DubHacks 2022 Hackathon, where 4 players compete in a real-time online writing test to see who can write the fastest.</li>
+              <li>Adapted Google Input Tools handwriting model through an open-source library, handwriting.js, to allow users to digitally write out their answers than typing.</li>
+              <li>Utilized and learned a NoSQL database, Firebase, to store in real-time active game states and players’ writing progress, then displays that information for all players in real-time.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3><a href="#" target="_blank" rel="noopener noreferrer">Image To Plant</a></h3>
+            <p class="project-date">July 2022 – Aug. 2022</p>
+            <ul>
+              <li>Identified a plant identification issue with beginner plant hobbyists and developed a personal project front-end website using JavaScript, HTML, and CSS, that identifies a user’s plant image to the plant’s species.</li>
+              <li>Integrated Azure’s Bing Web Search API to create a dataset containing 30,859 images of 250 unique plants.</li>
+              <li>Remodeled and trained MobileNetV3 using Python and TensorFlow to identify plant species by transfer learning.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3><a href="#" target="_blank" rel="noopener noreferrer">Mind Games</a></h3>
+            <p class="project-date">June 2022 – July 2022</p>
+            <ul>
+              <li>Developed a personal project front-end website consisting of three puzzle games: Solving mathematical questions, counting text that matches the prompt description, and counting people entering or leaving a house.</li>
+              <li>Adapted Google Input Tools handwriting model through an open-source library, handwriting.js, to allow users to write out their answers than typing.</li>
+              <li>Utilized CSS Animations and sound design to create a more responsive website and experience for the user.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3><a href="#" target="_blank" rel="noopener noreferrer">Campus Paths</a></h3>
+            <p class="project-date">Jan. 2022 – Mar. 2022</p>
+            <ul>
+              <li>Developed a full-stack website that finds the shortest path between two user-picked University of Washington Seattle Campus Buildings as a class project for Software Design & Implementation.</li>
+              <li>Built and designed a custom graph data structure in Java and implemented Dijkstra’s Algorithm.</li>
+              <li>Created multiple JUnit test suites to ensure code implementations were correct and to reduce possible errors.</li>
+              <li>Deployed a Java Spark server back-end API to communicate and send path data to the React front-end website.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3><a href="#" target="_blank" rel="noopener noreferrer">Bear Bakerie</a></h3>
+            <p class="project-date">Nov. 2021 – Dec. 2021</p>
+            <ul>
+              <li>Developed a full-stack proof of concept e-commerce website that sells bakery items alongside 1 other developer.</li>
+              <li>Designed and implemented the website’s UI and overall functionality through JavaScript, HTML, and CSS.</li>
+              <li>Built an Express REST API using Node.js with a PostgreSQL database to retrieve information such as the store’s items, search results, account details, or purchase history.</li>
+            </ul>
+          </article>
+ -->
+
+
+
         </section>
 
-        <section>
-          <h2>Skills and Tools</h2>
-        </section>
+      <section>
+        <h2>Skills and Tools</h2>
+
+        <h3>Languages</h3>
+        <ul>
+            <li>Java</li>
+            <li>JavaScript</li>
+            <li>TypeScript</li>
+            <li>Python</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>SQL</li>
+            <li>Lua</li>
+            <li>Arduino</li>
+            <li>Swift</li>
+            <li>C</li>
+            <li>C++</li>
+            <li>Bash</li>
+        </ul>
+
+        <h3>Frameworks &amp; Libraries</h3>
+        <ul>
+            <li>React.js</li>
+            <li>Spring</li>
+            <li>Node.js</li>
+            <li>Express.js</li>
+            <li>JQuery</li>
+            <li>Django</li>
+            <li>JUnit</li>
+            <li>Godot</li>
+            <li>TensorFlow</li>
+            <li>Firebase</li>
+            <li>JSP</li>
+            <li>D3.js</li>
+            <li>ML5.js</li>
+            <li>p5.js</li>
+            <li>Three.js</li>
+            <li>Tailwind CSS</li>
+            <li>Bootstrap CSS</li>
+        </ul>
+
+        <h3>Developer Tools &amp; Platforms</h3>
+        <ul>
+            <li>Git</li>
+            <li>Figma</li>
+            <li>Azure</li>
+            <li>AWS</li>
+            <li>Linux/Unix</li>
+            <li>Heroku</li>
+            <li>Adobe Creative Suite</li>
+            <li>SOLIDWORKS</li>
+            <li>AutoCAD</li>
+        </ul>
+    </section>
+
+    <section>
+      <h2>Courses Taken</h2>
+      <p>From the University of Washington or Tacoma Community College</p>
+
+      <label for="site-search">Search Courses:</label>
+      <input type="search" id="site-search" name="q" />
+      <ul id="course-list">
+        <!-- generated in JS -->
+      </ul>
+
+    </section>
 
 
-        <section>
-          <h2>Courses Taken</h2>
-          <p>From the University of Washington or Tacoma Community College</p>
 
-          <label for="site-search">Search Courses:</label>
-          <input type="search" id="site-search" name="q" />
-          <ul id="course-list">
-            <!-- generated in JS -->
-          </ul>
-
-        </section>
-
-        <section>
-          <h2></h2>
-        </section>
-
-
-
-        </section>
 
 
 
@@ -86,6 +253,7 @@
       </div>
   </div>
 
+  <script src="projects.js"></script>
   <script src="courseData.js"></script>
   <script src="index.js"></script>
 

@@ -278,6 +278,91 @@ function populateCourseList(searchTerm = '') {
     }
 }
 
+/**
+ * Creates an anchor element.
+ * @param {string} href - The URL for the link.
+ * @param {string} text - The display text for the link.
+ * @returns {HTMLAnchorElement} The created anchor element.
+ */
+function createLink(href, text) {
+    const link = document.createElement('a');
+    link.href = href;
+    link.textContent = text;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    return link;
+}
+
+/**
+ * Populates a container with project articles from a JSON object.
+ * @param {Array<Object>} projects An array of project objects.
+ */
+function populateProjects(projects) {
+    const container = document.getElementById('projects-container');
+
+    console.log("popluateProjects");
+
+    // Clear any existing content safely
+    container.replaceChildren();
+
+    // Create and add the main header
+    const mainHeader = document.createElement('h2');
+    mainHeader.textContent = 'Completed Projects';
+    container.appendChild(mainHeader);
+
+    // Loop through each project in the data array
+    projects.forEach(project => {
+    const article = document.createElement('article');
+
+    // Create the project title link (<h3><a></a></h3>)
+    const h3 = document.createElement('h3');
+    h3.appendChild(createLink(project.url, project.title));
+
+    // Create the date paragraph (<p>)
+    const p = document.createElement('p');
+    p.className = 'project-date';
+    p.textContent = project.date;
+
+    // Create the description list (<ul>)
+    const ul = document.createElement('ul');
+    project.description.forEach(descItem => {
+        const li = document.createElement('li');
+        li.textContent = descItem;
+        ul.appendChild(li);
+    });
+
+    // Handle the structured 'links' object if it exists
+    if (project.links) {
+        const linksLi = document.createElement('li');
+        if (project.links.github) { // Handle "Verbs" project
+        linksLi.appendChild(document.createTextNode("The project's source code and a video demonstration are available on "));
+        linksLi.appendChild(createLink(project.links.github, 'GitHub'));
+        linksLi.appendChild(document.createTextNode('.'));
+        } else if (project.links.controller) { // Handle "SprayCon" project
+        linksLi.appendChild(document.createTextNode("The project's source code for the "));
+        linksLi.appendChild(createLink(project.links.controller, 'controller'));
+        linksLi.appendChild(document.createTextNode(" and "));
+        linksLi.appendChild(createLink(project.links.website, 'website'));
+        linksLi.appendChild(document.createTextNode(", along with a "));
+        linksLi.appendChild(createLink(project.links.video, 'video demo'));
+        linksLi.appendChild(document.createTextNode(", are available."));
+        }
+        ul.appendChild(linksLi);
+}
+
+
+    // Append all created elements to the article
+    article.appendChild(h3);
+    article.appendChild(p);
+    article.appendChild(ul);
+
+    // Append the completed article to the main container
+    container.appendChild(article);
+    });
+}
+
+
+
 // --- Initialize Search and Course List ---
 document.addEventListener('DOMContentLoaded', () => {
     // Animation start is handled by texture.onload
@@ -286,6 +371,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial population of the course list
     populateCourseList();
+    populateProjects(projectsData);
+
 
     // Add event listener for the search input
     if (searchInput) {
