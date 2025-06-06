@@ -1,8 +1,6 @@
 # Access it here
 https://ryanvanle.com/
 
-
-
 # AI usage
 Used AI to generate the background water effect, and edges on the border, then general debugging, CSS polish, and importing content from like resume to JSONs to Javascript functions to generate HTML elements.
 
