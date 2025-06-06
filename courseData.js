@@ -277,7 +277,7 @@ const coursesData = [
     "institution": "UW",
     "courseSubject": "CSE",
     "courseNumber": "482",
-    "courseTitle": "Accessability Capstone Software Design to Empower Underserved Populations",
+    "courseTitle": "Accessibility Capstone Software Design to Empower Underserved Populations",
     "takeaway": ""
   },
   {
