@@ -422,3 +422,21 @@ nav ul li a {
 nav ul li a:hover {
   border-bottom: 2px solid #eed7a7;
 }
+
+@media (max-width: 768px) {
+  nav {
+    padding: 0.35rem 1rem;
+  }
+
+  nav .nav-title {
+    font-size: 1rem;
+  }
+
+  nav ul {
+    gap: 0.75rem;
+  }
+
+  nav ul li a {
+    font-size: 0.9rem;
+  }
+}
