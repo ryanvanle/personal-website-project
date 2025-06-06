@@ -3,7 +3,7 @@ const projectsData = [
     "title": "Tactus",
     "url": "https://github.com/ryanvanle/tactile-art",
     "date": "Jan. 2025 – Mar. 2025",
-    "tags": ["Accessibility", "Full-Stack", "Prototyping", "Web App"],
+    "tags": ["Accessibility", "Full-Stack", "Prototyping", "Web App", "Art"],
     "description": [
       "Co-developed a discovery-based image-search web application (JavaScript, HTML, CSS, Firebase) in a 4-person team, enhancing art experiences for Blind/Visually Impaired (BLV) tactile artists in a digital space.",
       "Designed and implemented a community-driven platform enabling users to explore artworks, art components, and art interpretations, addressing the lack of direct visual-to-tactile translation methods and promoting collaborative artistic dialogue through ”Community Suggestions” feature.",
@@ -69,7 +69,7 @@ const projectsData = [
     "title": "Social Engineering and Artificial Intelligence",
     "url": "https://www.youtube.com/watch?v=qARKdjYXHE4&ab_channel=Ryan",
     "date": "Mar. 2024",
-    "tags": ["AI", "Cybersecurity", "Ethics", "Social Engineering", "Presentation"],
+    "tags": ["AI", "Cybersecurity", "Ethics", "Social Engineering", "Video Essay"],
     "description": [
       "Co-authored and presented on how AI advancements amplify social engineering attacks through sophisticated, large-scale manipulation.",
       "Detailed attack vectors including LLMs for phishing, deepfakes for impersonation, and AI-generated media for widespread misinformation.",
@@ -91,10 +91,21 @@ const projectsData = [
     ]
   },
   {
+    "title": "Geo Car",
+    "url": "https://github.com/ryanvanle/cv-final-project",
+    "date": "May 2023 – June 2023",
+    "tags": ["Full-Stack", "Computer Vision", "APIs", "Data Viz"],
+    "description": [
+      "Developed a full-stack website to determine car makes in user-picked areas aimed to offer data-driven insights for car manufacturers through Computer Vision.",
+      "Leveraged Google Streetview API and Maps API to extract user-selected locations to be processed by YOLO Object Detection model via ML5.js to identify cars and send to a back-end server to determine the car make.",
+      "Successfully identified prevalent car makes worldwide, despite challenges posed by outdated data, model constraints, and integrating multiple technologies."
+    ]
+  },
+  {
     "title": "Why AI is the Scariest Field in Computer Science",
     "url": "https://youtu.be/tCSmOu2vLRg",
     "date": "Dec. 2022",
-    "tags": ["AI", "Computer Science", "Philosophy", "Ethics", "Video Script"],
+    "tags": ["AI", "Philosophy", "Ethics", "Video Essay"],
     "description": [
       "Authored a video script defining Artificial Intelligence and tracing its history from the 1956 Dartmouth Workshop, contrasting the Symbolic (rules-based) and Sub-Symbolic (data-based) approaches.",
       "Argues that AI is the 'scariest' field by exploring its goal of replicating human intelligence and the philosophical questions this raises, using the 'Mary's Room' thought experiment to discuss consciousness.",
@@ -106,7 +117,7 @@ const projectsData = [
     "title": "Writer’s Block",
     "url": "https://github.com/ryanvanle/writer-block",
     "date": "Oct. 2022",
-    "tags": ["Game Dev", "Full-Stack", "Hackathon", "Web App"],
+    "tags": ["Game Dev", "Full-Stack", "Web App"],
     "description": [
       "Developed a React multiplayer front-end website in under 24 hours for the DubHacks 2022 Hackathon, where 4 players compete in a real-time online writing test to see who can write the fastest.",
       "Adapted Google Input Tools handwriting model through an open-source library, handwriting.js, to allow users to digitally write out their answers than typing.",
@@ -145,7 +156,7 @@ const projectsData = [
     "title": "Campus Paths",
     "url": "#",
     "date": "Jan. 2022 – Mar. 2022",
-    "tags": ["Full-Stack", "Data Structures & Algorithms", "Web App"],
+    "tags": ["Full-Stack", "Data Structures & Algorithms", "Web App", "Full-Stack"],
     "description": [
       "Developed a full-stack website that finds the shortest path between two user-picked University of Washington Seattle Campus Buildings as a class project for Software Design & Implementation.",
       "Built and designed a custom graph data structure in Java and implemented Dijkstra’s Algorithm.",
