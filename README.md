@@ -1,8 +1,14 @@
+# Project 3 Alternative: Build an End-to-end personal website
+
 # Access it here, Website Link
 https://ryanvanle.com/
 
 # Github
 https://github.com/ryanvanle/personal-website-project
+
+# Developer Notes
+Domain Provider: Squarespace Domains
+Deployment service: Github Pages
 
 # AI usage
 Used AI, Google Gemini 2.5, to generate the background water effect, and edges on the border, then general debugging, filtering, CSS polish, and importing content from like resume / video scripts to JSONs to Javascript functions to generate HTML elements and Project Descriptions.
