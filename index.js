@@ -237,7 +237,6 @@ window.addEventListener('resize', resizeCanvas);
 // --- Course List Population and Search ---
 // Make sure 'coursesData' is loaded and available globally from your other JS file.
 
-
 /**
  * Populates the course list in the DOM, optionally filtering by a search term.
  * @param {string} [searchTerm=''] - The term to filter courses by. Case-insensitive.
@@ -279,210 +278,252 @@ function populateCourseList(searchTerm = '') {
 }
 
 
-        const projectsContainer = document.getElementById('projects-container');
-        let articleContainer; // Will hold the articles specifically
+const projectsContainer = document.getElementById('projects-container');
+let articleContainer; // Will hold the articles specifically
 
-        /**
-         * Creates an anchor element.
-         */
-        function createLink(href, text) {
-            const link = document.createElement('a');
-            link.href = href;
-            link.textContent = text;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            return link;
+/**
+ * Creates an anchor element.
+ */
+function createLink(href, text) {
+    const link = document.createElement('a');
+    link.href = href;
+    link.textContent = text;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    return link;
+}
+
+/**
+ * Renders project articles into the article container using the new format.
+ */
+function renderProjects(projects) {
+    if (!articleContainer) return;
+    articleContainer.replaceChildren();
+
+    if (projects.length === 0) {
+        const noResults = document.createElement('p');
+        noResults.textContent = 'No projects match the selected filters.';
+        articleContainer.appendChild(noResults);
+        return;
+    }
+
+    projects.forEach(project => {
+        // 1. Create the inner article with all its content
+        const article = document.createElement('article');
+        const h3 = document.createElement('h3');
+
+        // If the URL is '#', create a span; otherwise, create an anchor tag.
+        if (project.url === '#') {
+            const titleSpan = document.createElement('span');
+            titleSpan.textContent = project.title;
+            h3.appendChild(titleSpan);
+        } else {
+            h3.appendChild(createLink(project.url, project.title));
         }
 
-        /**
-         * Renders project articles into the article container using the new format.
-         */
-        function renderProjects(projects) {
-            if (!articleContainer) return;
-            articleContainer.replaceChildren();
 
-            if (projects.length === 0) {
-                const noResults = document.createElement('p');
-                noResults.textContent = 'No projects match the selected filters.';
-                articleContainer.appendChild(noResults);
-                return;
+        const tagsContainer = document.createElement('div');
+        tagsContainer.className = 'tags-container';
+        project.tags.forEach(tagText => {
+            const tag = document.createElement('span');
+            tag.className = 'tag';
+            tag.textContent = tagText;
+            tagsContainer.appendChild(tag);
+        });
+
+        const p = document.createElement('p');
+        p.className = 'project-date';
+        p.textContent = project.date;
+
+        const ul = document.createElement('ul');
+        project.description.forEach(descItem => {
+            const li = document.createElement('li');
+            li.textContent = descItem;
+            ul.appendChild(li);
+        });
+
+        // MODIFIED SECTION: Dynamically create the links list item
+        if (project.links && Object.keys(project.links).length > 0) {
+            const linksLi = document.createElement('li');
+            const linkParts = []; // To store text and <a> elements for sentence construction
+
+            const linkDefinitions = {
+                github: { label: 'source code on GitHub', create: (url) => createLink(url, 'GitHub') },
+                video: { label: 'a video demonstration', create: (url) => createLink(url, 'video demonstration') },
+                controller: { label: 'controller source code', create: (url) => createLink(url, 'controller source code') },
+                poster: { label: 'a project poster', create: (url) => createLink(url, 'project poster') }
+            };
+
+            // Special handling for SprayCon's 'github' link, which points to the p5.js web app
+            const effectiveLinks = { ...project.links };
+            if (project.title === 'SprayCon' && effectiveLinks.github) {
+                linkDefinitions.github.label = 'web application source';
+                linkDefinitions.github.create = (url) => createLink(url, 'web application source');
             }
 
-            projects.forEach(project => {
-                // 1. Create the inner article with all its content
-                const article = document.createElement('article');
-                const h3 = document.createElement('h3');
-                h3.appendChild(createLink(project.url, project.title));
+            const availableLinkKeys = Object.keys(linkDefinitions).filter(key => effectiveLinks[key]);
 
-                const tagsContainer = document.createElement('div');
-                tagsContainer.className = 'tags-container';
-                project.tags.forEach(tagText => {
-                    const tag = document.createElement('span');
-                    tag.className = 'tag';
-                    tag.textContent = tagText;
-                    tagsContainer.appendChild(tag);
-                });
+            if (availableLinkKeys.length > 0) {
+                linksLi.append('Find ');
 
-                const p = document.createElement('p');
-                p.className = 'project-date';
-                p.textContent = project.date;
+                availableLinkKeys.forEach((key, index) => {
+                    const definition = linkDefinitions[key];
+                    const url = effectiveLinks[key];
 
-                const ul = document.createElement('ul');
-                project.description.forEach(descItem => {
-                    const li = document.createElement('li');
-                    li.textContent = descItem;
-                    ul.appendChild(li);
-                });
+                    // Add the link element
+                    linkParts.push(definition.create(url));
 
-                if (project.links) {
-                    const linksLi = document.createElement('li');
-                    if (project.links.github) {
-                        linksLi.append("The project's source code and a video demonstration are available on ", createLink(project.links.github, 'GitHub'), ".");
-                    } else if (project.links.controller) {
-                        linksLi.append("The project's source code for the ", createLink(project.links.controller, 'controller'), " and ", createLink(project.links.website, 'website'), ", along with a ", createLink(project.links.video, 'video demo'), ", are available.");
+                    // Add appropriate conjunctions
+                    if (index < availableLinkKeys.length - 2) {
+                        linkParts.push(', ');
+                    } else if (index === availableLinkKeys.length - 2) {
+                        linkParts.push(' and ');
                     }
-                    ul.appendChild(linksLi);
-                }
+                });
 
-                article.append(h3, tagsContainer, p, ul);
-
-                // 2. Create the new wrapper structure
-                const wrapper = document.createElement('div');
-                wrapper.className = 'jaggy-container-wrapper project-article-jaggy';
-
-                const paperLayer = document.createElement('div');
-                paperLayer.className = 'distorted-paper-layer';
-
-                const contentLayer = document.createElement('div');
-                contentLayer.className = 'content-layer';
-
-                // 3. Nest the article inside the new structure
-                contentLayer.appendChild(article);
-                wrapper.append(paperLayer, contentLayer);
-
-                // 4. Append the final wrapped structure to the container
-                articleContainer.appendChild(wrapper);
-            });
+                linksLi.append(...linkParts, '.');
+                ul.appendChild(linksLi);
+            }
         }
 
 
-        function initializeFilters() {
-            projectsContainer.replaceChildren();
+        article.append(h3, tagsContainer, p, ul);
 
-            const allTags = [...new Set(projectsData.flatMap(p => p.tags))].sort();
-            const mainHeader = document.createElement('h2');
-            mainHeader.textContent = 'Completed Projects';
+        // 2. Create the new wrapper structure
+        const wrapper = document.createElement('div');
+        wrapper.className = 'jaggy-container-wrapper project-article-jaggy';
 
-            const filterControls = document.createElement('div');
-            filterControls.id = 'filter-controls';
+        const paperLayer = document.createElement('div');
+        paperLayer.className = 'distorted-paper-layer';
 
-            allTags.forEach(tag => {
-                const label = document.createElement('label');
-                label.className = 'filter-label';
+        const contentLayer = document.createElement('div');
+        contentLayer.className = 'content-layer';
 
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.name = 'tag';
-                checkbox.value = tag;
+        // 3. Nest the article inside the new structure
+        contentLayer.appendChild(article);
+        wrapper.append(paperLayer, contentLayer);
 
-                const span = document.createElement('span');
-                span.textContent = tag;
+        // 4. Append the final wrapped structure to the container
+        articleContainer.appendChild(wrapper);
+    });
+}
 
-                label.append(checkbox, span);
-                filterControls.appendChild(label);
-            });
 
-            articleContainer = document.createElement('div');
-            projectsContainer.append(mainHeader, filterControls, articleContainer);
+function initializeFilters() {
+    projectsContainer.replaceChildren();
 
-            filterControls.addEventListener('change', () => {
-                const selectedTags = Array.from(filterControls.querySelectorAll('input:checked')).map(cb => cb.value);
+    const allTags = [...new Set(projectsData.flatMap(p => p.tags))].sort();
+    const mainHeader = document.createElement('h2');
+    mainHeader.textContent = 'Completed Projects';
 
-                if (selectedTags.length === 0) {
-                    renderProjects(projectsData);
-                } else {
-                    // --- LOGIC CHANGE IS HERE ---
-                    // A project is included if its tags array contains EVERY selected tag.
-                    const filteredProjects = projectsData.filter(project =>
-                        selectedTags.every(tag => project.tags.includes(tag))
-                    );
-                    renderProjects(filteredProjects);
-                }
-            });
+    const filterControls = document.createElement('div');
+    filterControls.id = 'filter-controls';
+
+    allTags.forEach(tag => {
+        const label = document.createElement('label');
+        label.className = 'filter-label';
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = 'tag';
+        checkbox.value = tag;
+
+        const span = document.createElement('span');
+        span.textContent = tag;
+
+        label.append(checkbox, span);
+        filterControls.appendChild(label);
+    });
+
+    articleContainer = document.createElement('div');
+    projectsContainer.append(mainHeader, filterControls, articleContainer);
+
+    filterControls.addEventListener('change', () => {
+        const selectedTags = Array.from(filterControls.querySelectorAll('input:checked')).map(cb => cb.value);
+
+        if (selectedTags.length === 0) {
+            renderProjects(projectsData);
+        } else {
+            const filteredProjects = projectsData.filter(project =>
+                selectedTags.every(tag => project.tags.includes(tag))
+            );
+            renderProjects(filteredProjects);
         }
+    });
+}
 
 
 
 /**
-         * Populates a container with categorized skills.
-         * @param {Array<Object>} skills An array of skill objects.
-         */
-        function populateSkills(skills) {
-            const container = document.querySelector('.skills-section-container');
-            if (!container) {
-                console.error("Skills container not found!");
-                return;
-            }
-            container.replaceChildren(); // Clear any existing content safely
+ * Populates a container with categorized skills.
+ * @param {Array<Object>} skills An array of skill objects.
+ */
+function populateSkills(skills) {
+    const container = document.querySelector('.skills-section-container');
+    if (!container) {
+        console.error("Skills container not found!");
+        return;
+    }
+    container.replaceChildren(); // Clear any existing content safely
 
-            const groupedSkills = skills.reduce((acc, current) => {
-                const { category, skill } = current;
-                if (!acc[category]) {
-                    acc[category] = [];
-                }
-                acc[category].push(skill);
-                return acc;
-            }, {});
-
-            const mainHeader = document.createElement('h2');
-            mainHeader.textContent = 'Skills and Tools';
-            container.appendChild(mainHeader);
-
-            const categoryOrder = ["Languages", "Frameworks & Libraries", "Developer Tools & Platforms"];
-
-            categoryOrder.forEach(category => {
-                if (groupedSkills[category]) {
-                    const skillsInCategory = groupedSkills[category];
-
-                    const categoryHeader = document.createElement('h3');
-                    categoryHeader.textContent = category;
-
-                    const skillListContainer = document.createElement('div');
-                    skillListContainer.className = 'skill-list-container';
-
-                    skillsInCategory.forEach(skillName => {
-                        // --- LOGIC CHANGE IS HERE ---
-
-                        // 1. Create the wrapper div
-                        const wrapper = document.createElement('div');
-                        wrapper.className = 'jaggy-container-wrapper skill-item-jaggy';
-
-                        // 2. Create the paper layer div
-                        const paperLayer = document.createElement('div');
-                        paperLayer.className = 'distorted-paper-layer';
-
-                        // 3. Create the NEW content layer div
-                        const contentLayer = document.createElement('div');
-                        contentLayer.className = 'content-layer';
-
-                        // 4. Create the paragraph for the skill name
-                        const p = document.createElement('p');
-                        p.textContent = skillName;
-
-                        // 5. Nest the paragraph INSIDE the content layer
-                        contentLayer.appendChild(p);
-
-                        // 6. Append the paper layer AND the content layer to the wrapper
-                        wrapper.append(paperLayer, contentLayer);
-
-                        // 7. Append the completed skill item to its list container
-                        skillListContainer.appendChild(wrapper);
-                    });
-
-                    container.append(categoryHeader, skillListContainer);
-                }
-            });
+    const groupedSkills = skills.reduce((acc, current) => {
+        const { category, skill } = current;
+        if (!acc[category]) {
+            acc[category] = [];
         }
+        acc[category].push(skill);
+        return acc;
+    }, {});
+
+    const mainHeader = document.createElement('h2');
+    mainHeader.textContent = 'Skills and Tools';
+    container.appendChild(mainHeader);
+
+    const categoryOrder = ["Languages", "Frameworks & Libraries", "Developer Tools & Platforms"];
+
+    categoryOrder.forEach(category => {
+        if (groupedSkills[category]) {
+            const skillsInCategory = groupedSkills[category];
+
+            const categoryHeader = document.createElement('h3');
+            categoryHeader.textContent = category;
+
+            const skillListContainer = document.createElement('div');
+            skillListContainer.className = 'skill-list-container';
+
+            skillsInCategory.forEach(skillName => {
+                // --- LOGIC CHANGE IS HERE ---
+
+                // 1. Create the wrapper div
+                const wrapper = document.createElement('div');
+                wrapper.className = 'jaggy-container-wrapper skill-item-jaggy';
+
+                // 2. Create the paper layer div
+                const paperLayer = document.createElement('div');
+                paperLayer.className = 'distorted-paper-layer';
+
+                // 3. Create the NEW content layer div
+                const contentLayer = document.createElement('div');
+                contentLayer.className = 'content-layer';
+
+                // 4. Create the paragraph for the skill name
+                const p = document.createElement('p');
+                p.textContent = skillName;
+
+                // 5. Nest the paragraph INSIDE the content layer
+                contentLayer.appendChild(p);
+
+                // 6. Append the paper layer AND the content layer to the wrapper
+                wrapper.append(paperLayer, contentLayer);
+
+                // 7. Append the completed skill item to its list container
+                skillListContainer.appendChild(wrapper);
+            });
+
+            container.append(categoryHeader, skillListContainer);
+        }
+    });
+}
 
 // --- Initialize Search and Course List ---
 document.addEventListener('DOMContentLoaded', () => {
