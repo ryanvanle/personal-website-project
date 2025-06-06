@@ -45,6 +45,8 @@ body {
 
 .jaggy-container-wrapper {
   position: relative;
+  transform: translateZ(0);
+  overflow: hidden;
   font-family: "Merriweather", serif;
   margin: 1rem; /* Default margin for jaggy containers */
 }
