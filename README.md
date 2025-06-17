@@ -10,6 +10,15 @@ https://github.com/ryanvanle/personal-website-project
 Domain Provider: Squarespace Domains
 Deployment service: Github Pages
 
+Tools:
+HTML5
+CSS3
+JavaScript
+Git
+VSCode
+Google Chrome Debugger & ToolsS
+
+
 # AI usage
 Used AI, Google Gemini 2.5, to generate the background water effect, and edges on the border, then general debugging, filtering, CSS polish, and importing content from like resume / video scripts to JSONs to Javascript functions to generate HTML elements and Project Descriptions.
 
